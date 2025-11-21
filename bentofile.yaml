@@ -1,0 +1,18 @@
+service: "service:svc"
+
+description: "Service de prédiction énergétique"
+
+include:
+  - "*.py"
+  - "model/**"
+
+python:
+  packages:
+    - scikit-learn
+    - pandas
+    - numpy
+    - pydantic
+    - bentoml
+
+models:
+  - "energy_predictor:latest"

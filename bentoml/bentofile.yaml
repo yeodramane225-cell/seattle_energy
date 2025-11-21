@@ -1,0 +1,23 @@
+service: "service:svc"
+description: "Service de prédiction énergétique"
+labels:
+  owner: "team-energy"
+  stage: "dev"
+
+include:
+  - "service.py"
+  - "api/**"
+  # NOTE: Retirer "*.py" si seuls 'service.py' et 'api/' sont nécessaires,
+  # pour éviter d'inclure des scripts inutiles (comme save_model.py ou tests.py)
+
+python:
+  packages:
+    - numpy
+    - pandas
+    - scikit-learn
+    - pydantic
+    - uvicorn  # Ajouté pour le service web FastAPI
+    # - bentoml # Retiré (géré automatiquement)
+
+models:
+  - "energy_predictor:latest"
